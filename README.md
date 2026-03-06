@@ -5,7 +5,7 @@ Enterprise React boilerplate by FurioLabs. Built on Next.js 16 App Router with R
 ## Bootstrap a new project
 
 ```bash
-npx degit furiolabs/furio-kit my-app
+npx degit sandrogomez/furio-kit my-app
 cd my-app
 cp .env.example .env.local
 pnpm install
