@@ -1,0 +1,26 @@
+'use server'
+
+import { z } from 'zod'
+
+const {{pascalCase name}}Schema = z.object({
+  // TODO: add fields
+})
+
+export interface {{pascalCase name}}ActionState {
+  error?: string
+  success?: boolean
+}
+
+export async function {{camelCase name}}Action(
+  _prevState: {{pascalCase name}}ActionState,
+  formData: FormData,
+): Promise<{{pascalCase name}}ActionState> {
+  const result = {{pascalCase name}}Schema.safeParse(Object.fromEntries(formData))
+  if (!result.success) {
+    return { error: result.error.issues[0]?.message ?? 'Invalid input' }
+  }
+
+  // TODO: implement action logic
+
+  return { success: true }
+}

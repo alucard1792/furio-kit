@@ -1,0 +1,15 @@
+import type { {{pascalCase name}} } from '../model/types'
+
+interface {{pascalCase name}}CardProps {
+  {{name}}: {{pascalCase name}}
+}
+
+// Server Component — no interactivity; safe to keep as RSC.
+export function {{pascalCase name}}Card({ {{name}} }: {{pascalCase name}}CardProps) {
+  return (
+    <div className="rounded border border-gray-200 bg-white p-4 shadow-sm">
+      <p className="font-medium text-gray-900">{ {{name}}.id }</p>
+      {/* TODO: render {{name}} fields */}
+    </div>
+  )
+}

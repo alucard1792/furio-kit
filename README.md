@@ -2,19 +2,39 @@
 
 Enterprise React boilerplate by FurioLabs. Built on Next.js 16 App Router with React Server Components, Feature-Sliced Design, and a pluggable `@org/ui-kit` design system adapter.
 
-## Requirements
-
-- Node.js 20+
-- pnpm 9+
-
-## Getting started
+## Bootstrap a new project
 
 ```bash
+npx degit furiolabs/furio-kit my-app
+cd my-app
+cp .env.example .env.local
 pnpm install
 pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+> **Tip:** Enable "Template repository" in GitHub settings to allow one-click forks from the GitHub UI.
+
+## Requirements
+
+- Node.js 20+
+- pnpm 9+
+
+## Starter content (delete when you begin)
+
+furio-kit ships with a working `user` entity as a reference implementation. It demonstrates the complete FSD pattern — Zod schema, fetch function, Server Component, tests, and Suspense streaming.
+
+**Before building your app, remove it:**
+
+```bash
+rm -rf src/entities/user
+rm -rf src/features/auth    # if you're wiring a real auth provider instead
+```
+
+Then update `src/views/home/ui/HomePage.tsx` and `app/page.tsx` to point to your own content.
+
+Everything else (providers, adapters, auth scaffolding, generators) stays.
 
 ## Commands
 
@@ -27,6 +47,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | `pnpm format` | Format with Biome |
 | `pnpm test` | Run tests with Vitest |
 | `pnpm test:watch` | Run tests in watch mode |
+| `pnpm generate` | Scaffold a new entity, feature, or widget slice |
 | `pnpm audit` | Check for vulnerable dependencies |
 
 ## Connecting your design system
@@ -42,9 +63,17 @@ To connect your design system:
 
 2. Update each adapter in `src/shared/ui/` to import from your package instead of the placeholder implementation. Each adapter file contains a comment showing the exact replacement.
 
+## Auth
+
+Auth scaffolding lives in `src/shared/auth/`. The default adapter returns `null` (unauthenticated). To activate a real provider:
+
+1. Open `src/shared/auth/index.ts`
+2. Swap the one import line to `auth0Adapter` or `pingAdapter`
+3. Set the required env vars (see `.env.example` and the adapter file)
+
 ## Security
 
-Vulnerability scanning runs automatically on every push and PR via GitHub Actions (`.github/workflows/audit.yml`). Dependabot opens weekly PRs to keep dependencies current (`.github/dependabot.yml`).
+Vulnerability scanning runs automatically on every push and PR via GitHub Actions (`.github/workflows/ci.yml`). Dependabot opens weekly PRs to keep dependencies current (`.github/dependabot.yml`).
 
 To audit locally:
 
@@ -52,3 +81,11 @@ To audit locally:
 pnpm audit
 pnpm audit --fix   # auto-fix where possible
 ```
+
+## Maintainer setup (one-time)
+
+If you are setting up furio-kit as the canonical template:
+
+1. **GitHub → Settings → check "Template repository"** — enables the "Use this template" button
+2. **Branch protection on `main`** — require PR, require CI (`ci.yml`) to pass, no direct push
+3. Contributors use worktrees — see [CONTRIBUTING.md](./CONTRIBUTING.md)

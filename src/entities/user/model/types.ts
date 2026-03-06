@@ -1,3 +1,9 @@
+// =============================================================================
+// EXAMPLE ENTITY — delete this directory (src/entities/user/) when you start
+// building your own application. It exists to demonstrate the FSD pattern.
+// See README.md → "Starter content" for removal instructions.
+// =============================================================================
+
 import { z } from 'zod'
 
 export const UserSchema = z.object({
