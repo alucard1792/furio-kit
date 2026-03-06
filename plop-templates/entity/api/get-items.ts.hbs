@@ -1,0 +1,17 @@
+import { z } from 'zod'
+import { {{pascalCase name}}Schema } from '../model/types'
+
+const {{pascalCase name}}sResponseSchema = z.array({{pascalCase name}}Schema)
+
+export async function get{{pascalCase name}}s() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
+  if (!apiUrl) {
+    // TODO: replace with real mock data
+    return {{pascalCase name}}sResponseSchema.parse([])
+  }
+
+  const res = await fetch(`${apiUrl}/{{name}}s`, { next: { revalidate: 60 } })
+  if (!res.ok) throw new Error(`Failed to fetch {{name}}s: ${res.status}`)
+  return {{pascalCase name}}sResponseSchema.parse(await res.json())
+}

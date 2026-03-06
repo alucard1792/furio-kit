@@ -1,0 +1,25 @@
+'use client'
+
+import { useActionState } from 'react'
+import { Button } from '@/shared/ui'
+import { {{camelCase name}}Action } from '../actions/{{name}}-action'
+
+export function {{pascalCase name}}Form() {
+  const [state, action, isPending] = useActionState({{camelCase name}}Action, {})
+
+  return (
+    <form action={action} className="space-y-4">
+      {state.error && (
+        <p role="alert" className="text-sm text-red-600">
+          {state.error}
+        </p>
+      )}
+
+      {/* TODO: add form fields */}
+
+      <Button type="submit" disabled={isPending}>
+        {isPending ? 'Submitting…' : 'Submit'}
+      </Button>
+    </form>
+  )
+}

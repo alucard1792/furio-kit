@@ -5,8 +5,8 @@ import { Header } from '@/widgets/header'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'furio-kit',
-  description: 'Enterprise React boilerplate by FurioLabs',
+  title: process.env.NEXT_PUBLIC_APP_NAME ?? 'My App',
+  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION ?? 'Enterprise React boilerplate by FurioLabs',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -3,15 +3,22 @@ import { UserSchema } from '../model/types'
 
 const UsersResponseSchema = z.array(UserSchema)
 
-export async function getUsers() {
-  // Replace with fetch() or a DB query when the backend is available.
-  // The Zod parse below must remain — it validates and narrows the response
-  // at the system boundary before any data reaches the UI.
-  const raw = [
-    { id: '1', name: 'Alex Rivera', email: 'alex@example.com', role: 'admin' },
-    { id: '2', name: 'Sam Okoro', email: 'sam@example.com', role: 'member' },
-    { id: '3', name: 'Jamie Chen', email: 'jamie@example.com', role: 'viewer' },
-  ]
+// DEV fallback — used when NEXT_PUBLIC_API_URL is not configured
+const DEV_MOCK = [
+  { id: '1', name: 'Alex Rivera', email: 'alex@example.com', role: 'admin' },
+  { id: '2', name: 'Sam Okoro', email: 'sam@example.com', role: 'member' },
+  { id: '3', name: 'Jamie Chen', email: 'jamie@example.com', role: 'viewer' },
+]
 
-  return UsersResponseSchema.parse(raw)
+export async function getUsers() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+
+  if (!apiUrl) {
+    // No backend configured — return mock data so local dev works out of the box
+    return UsersResponseSchema.parse(DEV_MOCK)
+  }
+
+  const res = await fetch(`${apiUrl}/users`, { next: { revalidate: 60 } })
+  if (!res.ok) throw new Error(`Failed to fetch users: ${res.status}`)
+  return UsersResponseSchema.parse(await res.json())
 }
