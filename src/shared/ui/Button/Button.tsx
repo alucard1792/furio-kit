@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
 /**
  * Adapter for @org/ui-kit Button.
@@ -11,18 +11,18 @@ import type { ReactNode } from 'react'
  */
 
 export interface ButtonProps {
-  children: ReactNode
-  onClick?: () => void
-  variant?: 'primary' | 'secondary' | 'ghost'
-  disabled?: boolean
-  type?: 'button' | 'submit' | 'reset'
+  children: ReactNode;
+  onClick?: () => void;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const variantStyles: Record<NonNullable<ButtonProps['variant']>, string> = {
   primary: 'bg-blue-600 text-white hover:bg-blue-700',
   secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
   ghost: 'bg-transparent text-gray-700 hover:bg-gray-100',
-}
+};
 
 export function Button({
   children,
@@ -40,5 +40,5 @@ export function Button({
     >
       {children}
     </button>
-  )
+  );
 }

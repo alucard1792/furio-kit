@@ -1,5 +1,5 @@
-import { Suspense } from 'react'
-import { UserList } from '@/entities/user'
+import { Suspense } from 'react';
+import { UserList } from '@/entities/user';
 
 // Server Component — orchestrates layout and streaming boundaries.
 //
@@ -11,15 +11,17 @@ export function HomePage() {
     <section className="mx-auto max-w-5xl px-6 py-12">
       <h1 className="mb-1 text-3xl font-bold text-gray-900">Welcome</h1>
       <p className="mb-8 text-gray-500">
-        This is your application's home page. Replace this content with your own widgets and
-        features following the FSD layer conventions.
+        This is your application's home page. Replace this content with your own
+        widgets and features following the FSD layer conventions.
       </p>
 
       {/* Example: streaming list with Suspense boundary — replace with your own widgets */}
-      <h2 className="mb-4 text-xl font-semibold text-gray-700">Users (example entity)</h2>
+      <h2 className="mb-4 text-xl font-semibold text-gray-700">
+        Users (example entity)
+      </h2>
       <Suspense fallback={<p className="text-sm text-gray-400">Loading...</p>}>
         <UserList />
       </Suspense>
     </section>
-  )
+  );
 }

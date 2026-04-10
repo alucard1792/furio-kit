@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
-import { cn } from '@/shared/utils'
+import type { ReactNode } from 'react';
+import { cn } from '@/shared/utils';
 
 /**
  * Adapter for @org/ui-kit Card.
@@ -10,14 +10,19 @@ import { cn } from '@/shared/utils'
  */
 
 export interface CardProps {
-  children: ReactNode
-  className?: string
+  children: ReactNode;
+  className?: string;
 }
 
 export function Card({ children, className }: CardProps) {
   return (
-    <div className={cn('rounded-lg border border-gray-200 bg-white p-6 shadow-sm', className)}>
+    <div
+      className={cn(
+        'rounded-lg border border-gray-200 bg-white p-6 shadow-sm',
+        className
+      )}
+    >
       {children}
     </div>
-  )
+  );
 }

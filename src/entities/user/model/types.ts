@@ -4,7 +4,7 @@
 // See README.md → "Starter content" for removal instructions.
 // =============================================================================
 
-import { z } from 'zod'
+import { z } from 'zod';
 
 export const UserSchema = z.object({
   id: z.string(),
@@ -12,6 +12,6 @@ export const UserSchema = z.object({
   email: z.string().email(),
   role: z.enum(['admin', 'member', 'viewer']),
   avatarUrl: z.string().url().optional(),
-})
+});
 
-export type User = z.infer<typeof UserSchema>
+export type User = z.infer<typeof UserSchema>;

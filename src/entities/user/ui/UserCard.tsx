@@ -1,8 +1,8 @@
-import { Card } from '@/shared/ui'
-import type { User } from '../model/types'
+import { Card } from '@/shared/ui';
+import type { User } from '../model/types';
 
 interface UserCardProps {
-  user: User
+  user: User;
 }
 
 // Server Component — purely presentational.
@@ -23,5 +23,5 @@ export function UserCard({ user }: UserCardProps) {
         </div>
       </div>
     </Card>
-  )
+  );
 }

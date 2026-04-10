@@ -8,10 +8,10 @@
  *   - ./adapters/auth0   — Auth0 OIDC (requires @auth0/nextjs-auth0)
  *   - ./adapters/ping    — PingFederate / PingOne OIDC (requires jose)
  */
-import { mockAdapter } from './adapters/mock'
+import { mockAdapter } from './adapters/mock';
 
-export const authAdapter = mockAdapter
+export const authAdapter = mockAdapter;
 
 // Re-export types so callers only need one import path
-export type { AuthAdapter } from './auth-adapter'
-export type { AuthUser, Session } from './types'
+export type { AuthAdapter } from './auth-adapter';
+export type { AuthUser, Session } from './types';

@@ -1,7 +1,7 @@
-import type { NextRequest } from 'next/server'
-import type { AuthAdapter } from '../auth-adapter'
-import { SessionSchema } from '../types'
-import type { Session } from '../types'
+import type { NextRequest } from 'next/server';
+import type { AuthAdapter } from '../auth-adapter';
+import { SessionSchema } from '../types';
+import type { Session } from '../types';
 
 /**
  * Mock auth adapter for local development.
@@ -16,7 +16,7 @@ import type { Session } from '../types'
  */
 export const mockAdapter: AuthAdapter = {
   async getSession(_request: NextRequest): Promise<Session | null> {
-    if (!process.env.MOCK_AUTH_USER) return null
+    if (!process.env.MOCK_AUTH_USER) return null;
 
     return SessionSchema.parse({
       user: {
@@ -26,18 +26,18 @@ export const mockAdapter: AuthAdapter = {
         role: 'admin',
       },
       expiresAt: Math.floor(Date.now() / 1000) + 60 * 60 * 8, // 8 hours
-    })
+    });
   },
 
   getLoginUrl(returnTo = '/') {
-    return `/login?returnTo=${encodeURIComponent(returnTo)}`
+    return `/login?returnTo=${encodeURIComponent(returnTo)}`;
   },
 
   getLogoutUrl(returnTo = '/') {
-    return `/logout?returnTo=${encodeURIComponent(returnTo)}`
+    return `/logout?returnTo=${encodeURIComponent(returnTo)}`;
   },
 
   async validateRequest(request: NextRequest): Promise<Session | null> {
-    return this.getSession(request)
+    return this.getSession(request);
   },
-}
+};

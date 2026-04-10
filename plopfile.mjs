@@ -1,7 +1,10 @@
 /** @param {import('plop').NodePlopAPI} plop */
 export default function (plop) {
   // Helpers
-  plop.setHelper('upperFirst', (str) => str.charAt(0).toUpperCase() + str.slice(1))
+  plop.setHelper(
+    'upperFirst',
+    (str) => str.charAt(0).toUpperCase() + str.slice(1)
+  );
 
   // ─── Entity ─────────────────────────────────────────────────────────────────
   plop.setGenerator('entity', {
@@ -11,7 +14,8 @@ export default function (plop) {
         type: 'input',
         name: 'name',
         message: 'Entity name (singular, kebab-case, e.g. product):',
-        validate: (v) => /^[a-z][a-z0-9-]*$/.test(v) || 'Use kebab-case (e.g. product)',
+        validate: (v) =>
+          /^[a-z][a-z0-9-]*$/.test(v) || 'Use kebab-case (e.g. product)',
       },
     ],
     actions: [
@@ -36,7 +40,7 @@ export default function (plop) {
         templateFile: 'plop-templates/entity/index.ts.hbs',
       },
     ],
-  })
+  });
 
   // ─── Feature ─────────────────────────────────────────────────────────────────
   plop.setGenerator('feature', {
@@ -46,7 +50,8 @@ export default function (plop) {
         type: 'input',
         name: 'name',
         message: 'Feature name (kebab-case, e.g. add-to-cart):',
-        validate: (v) => /^[a-z][a-z0-9-]*$/.test(v) || 'Use kebab-case (e.g. add-to-cart)',
+        validate: (v) =>
+          /^[a-z][a-z0-9-]*$/.test(v) || 'Use kebab-case (e.g. add-to-cart)',
       },
     ],
     actions: [
@@ -66,7 +71,7 @@ export default function (plop) {
         templateFile: 'plop-templates/feature/index.ts.hbs',
       },
     ],
-  })
+  });
 
   // ─── Widget ──────────────────────────────────────────────────────────────────
   plop.setGenerator('widget', {
@@ -76,7 +81,8 @@ export default function (plop) {
         type: 'input',
         name: 'name',
         message: 'Widget name (kebab-case, e.g. user-sidebar):',
-        validate: (v) => /^[a-z][a-z0-9-]*$/.test(v) || 'Use kebab-case (e.g. user-sidebar)',
+        validate: (v) =>
+          /^[a-z][a-z0-9-]*$/.test(v) || 'Use kebab-case (e.g. user-sidebar)',
       },
     ],
     actions: [
@@ -91,5 +97,5 @@ export default function (plop) {
         templateFile: 'plop-templates/widget/index.ts.hbs',
       },
     ],
-  })
+  });
 }

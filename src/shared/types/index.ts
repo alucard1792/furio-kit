@@ -1,14 +1,14 @@
-export type ID = string
+export type ID = string;
 
 export interface PaginatedResponse<T> {
-  data: T[]
-  total: number
-  page: number
-  pageSize: number
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
 }
 
 export interface ApiError {
-  message: string
-  code: string
-  statusCode: number
+  message: string;
+  code: string;
+  statusCode: number;
 }

@@ -1,15 +1,15 @@
-'use server'
+'use server';
 
-import { z } from 'zod'
+import { z } from 'zod';
 
 const LoginSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
-})
+});
 
 export interface LoginActionState {
-  error?: string
-  success?: boolean
+  error?: string;
+  success?: boolean;
 }
 
 /**
@@ -34,23 +34,23 @@ export interface LoginActionState {
  */
 export async function loginAction(
   _prevState: LoginActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<LoginActionState> {
   const raw = {
     email: formData.get('email'),
     password: formData.get('password'),
-  }
+  };
 
-  const result = LoginSchema.safeParse(raw)
+  const result = LoginSchema.safeParse(raw);
   if (!result.success) {
-    return { error: result.error.issues[0]?.message ?? 'Invalid input' }
+    return { error: result.error.issues[0]?.message ?? 'Invalid input' };
   }
 
-  const { email: _email, password: _password } = result.data
+  const { email: _email, password: _password } = result.data;
 
   // TODO: Replace with real authentication call
   // e.g. const session = await authAdapter.authenticate(email, password)
   // Set HttpOnly cookie on success (see notes above)
 
-  return { error: 'Authentication not configured. Connect an auth adapter.' }
+  return { error: 'Authentication not configured. Connect an auth adapter.' };
 }

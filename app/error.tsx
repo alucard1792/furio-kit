@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
 export default function GlobalError({
   error,
   reset,
 }: {
-  error: Error & { digest?: string }
-  reset: () => void
+  error: Error & { digest?: string };
+  reset: () => void;
 }) {
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
@@ -18,5 +18,5 @@ export default function GlobalError({
         Try again
       </button>
     </div>
-  )
+  );
 }
